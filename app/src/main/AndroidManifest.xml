@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.google.mbarte.barte_movieworld">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="Barte Movie World"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".RegisterActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".SelectActivity" />
+        <activity android:name=".BranchActivity" />
+        <activity android:name=".ScheduleActivity" />
+        <activity
+            android:name=".HomeActivity"
+            android:label="@string/title_activity_home" />
+        <activity android:name=".RenewHomeActivity" />
+        <activity
+            android:name=".HomeTabActivity"
+            android:label="@string/title_activity_home_tab"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".ReserveSeatActivity"></activity>
+    </application>
+
+</manifest>

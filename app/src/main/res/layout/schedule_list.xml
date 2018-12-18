@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_horizontal_margin">
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_marginLeft="20dp"
+            android:padding="@dimen/cardview_default_radius"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            
+            <TextView
+                android:id="@+id/textHead1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cinema 1 - 2D"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"/>
+
+            <TextView
+                android:id="@+id/textDesc1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="December 1, 2017 - (Reserved Seating)"/>
+
+            <TextView
+                android:id="@+id/textBottom1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1:00 PM - 3:30 PM"/>
+            
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

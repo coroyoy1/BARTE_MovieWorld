@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "757459602421",
+    "firebase_url": "https://moviedatabase-c1c17.firebaseio.com",
+    "project_id": "moviedatabase-c1c17",
+    "storage_bucket": "moviedatabase-c1c17.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:757459602421:android:5c469d7ae960869d",
+        "android_client_info": {
+          "package_name": "com.google.mbarte.barte_movieworld"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "757459602421-oh71h7jikmkpqfd1cn3a14q9df7op3ce.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.google.mbarte.barte_movieworld",
+            "certificate_hash": "aebe72944be8240ffea62f323e4d4cbe6bfcb729"
+          }
+        },
+        {
+          "client_id": "757459602421-dqi7ihfh1g2q2f1gomn31unvmpch42co.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdLGIxBSKunsWfy30yH1J0yyZnclW7-O8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "757459602421-dqi7ihfh1g2q2f1gomn31unvmpch42co.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
