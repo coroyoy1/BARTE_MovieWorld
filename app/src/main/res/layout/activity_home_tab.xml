@@ -19,6 +19,24 @@
         app:popupTheme="@style/AppTheme.PopupOverlay"
         app:title="Barte Movie World">
 
+        <Button
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_gravity="right"
+            android:text="logout"
+            android:id="@+id/logoutButton"
+            android:background="@android:color/holo_green_dark"
+            android:textColor="@android:color/white"/>
+
+        <Button
+            android:id="@+id/profileButton"
+            android:layout_marginRight="10dp"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_gravity="right"
+            android:background="@android:color/darker_gray"
+            android:text="Profile"/>
+
     </android.support.v7.widget.Toolbar>
 
     <LinearLayout
