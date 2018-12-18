@@ -1,5 +1,6 @@
 package com.google.mbarte.barte_movieworld;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -21,7 +22,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class HomeTabActivity extends AppCompatActivity {
+import com.google.firebase.auth.FirebaseAuth;
+
+public class HomeTabActivity extends AppCompatActivity implements View.OnClickListener{
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -38,11 +41,14 @@ public class HomeTabActivity extends AppCompatActivity {
      */
     private ViewPager mViewPager;
     Button reserveButton1;
+    Button profileBtn, logoutBtn;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_tab);
+        mAuth = FirebaseAuth.getInstance();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -58,6 +64,12 @@ public class HomeTabActivity extends AppCompatActivity {
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
+
+        profileBtn = (Button)findViewById(R.id.profileButton);
+        profileBtn.setOnClickListener(this);
+
+        logoutBtn = (Button)findViewById(R.id.logoutButton);
+        logoutBtn.setOnClickListener(this);
     }
 
 
@@ -81,6 +93,22 @@ public class HomeTabActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch(v.getId())
+        {
+            case R.id.profileButton:
+                Intent intent = new Intent(HomeTabActivity.this, ProfileActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.logoutButton:
+                FirebaseAuth.getInstance().signOut();
+                finish();
+                startActivity(new Intent(HomeTabActivity.this, LoginActivity.class));
+                break;
+        }
     }
 
     /**
