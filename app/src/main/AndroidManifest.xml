@@ -31,8 +31,9 @@
         <activity
             android:name=".HomeTabActivity"
             android:label="@string/title_activity_home_tab"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".ReserveSeatActivity"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ReserveSeatActivity" />
+        <activity android:name=".ProfileActivity"></activity>
     </application>
 
 </manifest>
