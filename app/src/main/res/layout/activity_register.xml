@@ -12,6 +12,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -24,11 +25,33 @@
                 android:textSize="30dp"
                 android:textStyle="bold"
                 android:layout_marginLeft="50dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
                 />
 
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:id="@+id/createImage"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:background="@drawable/ic_launcher_background"/>
+
+            <Button
+                android:id="@+id/createAddButton"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="30dp"
+                android:text="Add Photo"/>
+
+        </LinearLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -37,7 +60,7 @@
                 android:id="@+id/editTextFullname"
                 android:layout_marginTop="40dp"
                 android:layout_width="300dp"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/round_edittext"
                 android:layout_marginLeft="28dp"
                 android:hint="Full Name"
@@ -45,6 +68,7 @@
                 />
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -53,7 +77,7 @@
                 android:id="@+id/editTextEmail"
                 android:layout_marginTop="10dp"
                 android:layout_width="300dp"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/round_edittext"
                 android:layout_marginLeft="28dp"
                 android:hint="Email Address"
@@ -66,10 +90,27 @@
             android:layout_height="wrap_content">
 
             <EditText
+                android:id="@+id/editTextBirthdate"
+                android:layout_marginTop="10dp"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_edittext"
+                android:layout_marginLeft="28dp"
+                android:hint="Select Date"
+                android:textAlignment="center"
+                android:inputType="date"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <EditText
                 android:id="@+id/editTextPassword"
                 android:layout_marginTop="10dp"
                 android:layout_width="300dp"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/round_edittext"
                 android:layout_marginLeft="28dp"
                 android:hint="Password"
@@ -86,7 +127,7 @@
                 android:id="@+id/editTextRePassword"
                 android:layout_marginTop="10dp"
                 android:layout_width="300dp"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/round_edittext"
                 android:layout_marginLeft="28dp"
                 android:hint="Re-type Password"
