@@ -145,7 +145,7 @@
             android:layout_marginTop="20dp">
 
             <Button
-                android:id="@+id/updateButton"
+                android:id="@+id/updateButton2"
                 android:layout_width="260dp"
                 android:layout_height="50dp"
                 android:text="Update"

@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/round_edittext"
                 android:textColor="@android:color/black"
-                android:hint="First Name"
+                android:hint="Full Name"
                 android:textAlignment="center" />
         </LinearLayout>
         <LinearLayout
@@ -73,14 +73,6 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp">
 
-            <EditText
-                android:id="@+id/lastNameProfile"
-                android:layout_width="240dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/round_edittext"
-                android:textColor="@android:color/black"
-                android:hint="Last Name"
-                android:textAlignment="center" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"

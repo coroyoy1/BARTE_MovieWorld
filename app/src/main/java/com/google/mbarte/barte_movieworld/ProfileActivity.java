@@ -21,6 +21,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -32,25 +37,44 @@ public class ProfileActivity extends AppCompatActivity {
     private static final int CHOOSE_IMAGE = 101;
     Button photoHERE, updateHERE;
     ImageView imageView;
-    EditText firstName, lastName, emailAddress, dateHERE;
+    EditText firstName, emailAddress, dateHERE;
     String stringImageURL;
-    FirebaseAuth mAuth;
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();;
+    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();;
+    String currentUserId = mAuth.getCurrentUser().getUid();;
 
     Uri uriProfileImage;
+    final DatabaseReference databaseReference = firebaseDatabase.getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        photoHERE = findViewById(R.id.addPhotoButton);
-        updateHERE = findViewById(R.id.updateButton);
-        imageView = findViewById(R.id.imageHERE);
-        firstName = findViewById(R.id.firstNameProfile);
-        lastName = findViewById(R.id.lastNameProfile);
-        emailAddress = findViewById(R.id.emailProfile);
+        photoHERE = (Button) findViewById(R.id.addPhotoButton);
+        updateHERE = (Button) findViewById(R.id.updateButton1);
+        imageView = (ImageView) findViewById(R.id.imageHERE);
+        firstName = (EditText) findViewById(R.id.firstNameProfile);
+        emailAddress = (EditText) findViewById(R.id.emailProfile);
+        dateHERE = (EditText) findViewById(R.id.birthdateProfile1);
 
-        mAuth = FirebaseAuth.getInstance();
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists())
+                {
+                    Users userProfile = dataSnapshot.getValue(Users.class);
+                    firstName.setText(userProfile.getFullname());
+                    emailAddress.setText(userProfile.getEmail());
+                    dateHERE.setText(userProfile.getBirth());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(ProfileActivity.this, databaseError.getCode(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
         photoHERE.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,17 +86,18 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 saveUserInfo();
+                UpdateUserInfo();
+                finish();
             }
         });
     }
 
-    private void saveUserInfo() {
+    private void UpdateUserInfo() {
         String firstN = firstName.getText().toString();
-        String lastN = lastName.getText().toString();
         String emailN = emailAddress.getText().toString();
         String dateN = dateHERE.getText().toString();
 
-        if(firstN.isEmpty() && lastN.isEmpty() && emailN.isEmpty())
+        if(firstN.isEmpty() && emailN.isEmpty())
         {
             Toast.makeText(ProfileActivity.this, "Fill up all inputs.",
                     Toast.LENGTH_SHORT).show();
@@ -83,9 +108,6 @@ public class ProfileActivity extends AppCompatActivity {
         {
             UserProfileChangeRequest profile = new UserProfileChangeRequest.Builder()
                     .setDisplayName(firstN)
-                    .setDisplayName(lastN)
-                    .setDisplayName(emailN)
-                    .setDisplayName(dateN)
                     .setPhotoUri(Uri.parse(stringImageURL))
                     .build();
             user.updateProfile(profile)
@@ -99,9 +121,7 @@ public class ProfileActivity extends AppCompatActivity {
                         }
                     });
         }
-
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -120,6 +140,17 @@ public class ProfileActivity extends AppCompatActivity {
         }
     }
 
+    public void saveUserInfo()
+    {
+        String fullNameHERE = firstName.getText().toString();
+        String emailAddressHERE = emailAddress.getText().toString();
+        String dateSave = dateHERE.getText().toString();
+        String pass = "123456";
+        String repassword = "123456";
+
+        Users userProfile = new Users(fullNameHERE, emailAddressHERE, pass, repassword, dateSave);
+        databaseReference.setValue(userProfile);
+    }
     private void uploadImageToFirebase() {
         StorageReference profileImageRef = FirebaseStorage.getInstance().getReference("profilepics/"+System.currentTimeMillis()+ ".jpg");
         if(uriProfileImage != null)
