@@ -3,7 +3,7 @@ package com.google.mbarte.barte_movieworld;
 import com.google.firebase.storage.StorageReference;
 
 public class Users {
-    String userID;
+
     String fullname;
     String email;
     String password;
@@ -15,8 +15,8 @@ public class Users {
 
     }
 
-    public Users(String userID, String fullname, String email, String password, String repassword, String birth) {
-        this.userID = userID;
+    public Users(String fullname, String email, String password, String repassword, String birth) {
+
         this.fullname = fullname;
         this.email = email;
         this.password = password;
@@ -24,9 +24,6 @@ public class Users {
         this.birth = birth;
     }
 
-    public String getUserID() {
-        return userID;
-    }
 
     public String getFullname() {
         return fullname;

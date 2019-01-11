@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileActivity"
+    tools:context=".Profile2Activity"
     android:background="@drawable/backgroundblue">
 
     <LinearLayout
@@ -37,10 +37,10 @@
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:background="@drawable/ic_launcher_background"
-                android:id="@+id/imageHERE"/>
+                android:id="@+id/imageHERE1"/>
 
             <Button
-                android:id="@+id/addPhotoButton"
+                android:id="@+id/addPhotoButton1"
                 android:layout_marginLeft="20dp"
                 android:layout_width="120dp"
                 android:layout_height="50dp"
@@ -58,12 +58,12 @@
             android:layout_marginTop="20dp">
 
             <EditText
-                android:id="@+id/firstNameProfile"
+                android:id="@+id/fullNameProfile1"
                 android:layout_width="240dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/round_edittext"
                 android:textColor="@android:color/black"
-                android:hint="First Name"
+                android:hint="Full Name"
                 android:textAlignment="center" />
         </LinearLayout>
         <LinearLayout
@@ -73,14 +73,6 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp">
 
-            <EditText
-                android:id="@+id/lastNameProfile"
-                android:layout_width="240dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/round_edittext"
-                android:textColor="@android:color/black"
-                android:hint="Last Name"
-                android:textAlignment="center" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -120,7 +112,7 @@
             android:layout_marginTop="10dp">
 
             <EditText
-                android:id="@+id/emailProfile"
+                android:id="@+id/emailProfile1"
                 android:layout_width="240dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/round_edittext"
@@ -136,16 +128,14 @@
             android:layout_marginTop="10dp">
 
             <EditText
-                android:id="@+id/birthdateProfile1"
-                android:layout_marginTop="0dp"
+                android:id="@+id/date1"
                 android:layout_width="240dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/round_edittext"
-                android:layout_marginLeft="0dp"
-                android:hint="Select Date"
-                android:textAlignment="center"
+                android:hint="DD/MM/YYYY"
                 android:inputType="date"
-                />
+                android:focusable="false"
+                android:background="@drawable/round_edittext"
+                android:textAlignment="center"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -155,7 +145,7 @@
             android:layout_marginTop="20dp">
 
             <Button
-                android:id="@+id/updateButton1"
+                android:id="@+id/updateButton"
                 android:layout_width="260dp"
                 android:layout_height="50dp"
                 android:text="Update"

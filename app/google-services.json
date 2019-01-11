@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "757459602421-10sm9f86qmabvdslhg5e079ghbrfm06p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.google.mbarte.barte_movieworld",
+            "certificate_hash": "cc0fe3d8c204300a9e080cbe66d36bb0ca8c1c80"
+          }
+        },
+        {
           "client_id": "757459602421-dqi7ihfh1g2q2f1gomn31unvmpch42co.apps.googleusercontent.com",
           "client_type": 3
         }

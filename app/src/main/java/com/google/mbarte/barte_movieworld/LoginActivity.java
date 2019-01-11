@@ -96,11 +96,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                finish();
                 Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent);
             }
         });
     }
+
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -128,6 +131,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onStart();
 
         mAuth.addAuthStateListener(mAuthListener);
+        if(mAuth.getCurrentUser() != null)
+        {
+            finish();
+            startActivity(new Intent(this, ProfileActivity.class));
+        }
     }
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount account) {
@@ -180,6 +188,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful())
                 {
+                    finish();
                     Intent intent = new Intent(LoginActivity.this, HomeTabActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);

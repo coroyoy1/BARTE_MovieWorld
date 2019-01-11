@@ -100,7 +100,7 @@ public class HomeTabActivity extends AppCompatActivity implements View.OnClickLi
         switch(v.getId())
         {
             case R.id.profileButton:
-                Intent intent = new Intent(HomeTabActivity.this, ProfileActivity.class);
+                Intent intent = new Intent(HomeTabActivity.this, Profile2Activity.class);
                 startActivity(intent);
                 break;
             case R.id.logoutButton:

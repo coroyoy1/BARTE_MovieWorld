@@ -80,8 +80,9 @@ public class RegisterActivity extends AppCompatActivity {
         signupButtonHere.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                uploadImage();
-                RegisterUser();
+                //uploadImage();
+                RegisterUser2();
+
             }
         });
         addPhotoButton.setOnClickListener(new View.OnClickListener() {
@@ -177,29 +178,47 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
-    private void RegisterUser()
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(mAuth.getCurrentUser() != null)
+        {
+
+        }
+    }
+
+    private void RegisterUser2()
     {
-        String fullname = editFullName.getText().toString().trim();
-        String email = editEmail.getText().toString().trim();
-        String password = editPassword.getText().toString().trim();
-        String repassword = editRePassword.getText().toString().trim();
-        String birthdate = editDate.getText().toString().trim();
+        final String fullname = editFullName.getText().toString().trim();
+        final String email = editEmail.getText().toString().trim();
+        final String password = editPassword.getText().toString().trim();
+        final String repassword = editRePassword.getText().toString().trim();
+        final String birthdate = editDate.getText().toString().trim();
 
         if(!TextUtils.isEmpty(fullname)||!TextUtils.isEmpty(email)||!TextUtils.isEmpty(password)||!TextUtils.isEmpty(repassword))
         {
             if(password.equals(repassword)) {
-                String id = databaseUsers.push().getKey();
-
-                Users user = new Users(id, fullname, email, password, repassword, birthdate);
-
-                databaseUsers.child(id).setValue(user);
-
                 mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful())
                         {
-                            Toast.makeText(getApplicationContext(), "Successfully Registered", Toast.LENGTH_SHORT).show();
+                            Users user = new Users(fullname, email, password, repassword, birthdate);
+                            FirebaseDatabase.getInstance().getReference("Users")
+                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful())
+                                    {
+                                        Toast.makeText(getApplicationContext(), "Successfully Registered", Toast.LENGTH_SHORT).show();
+                                    }
+                                    else
+                                    {
+
+                                    }
+                                }
+                            });
                         }
                         else
                         {
@@ -237,6 +256,72 @@ public class RegisterActivity extends AppCompatActivity {
         else
         {
             Toast.makeText(this, "All input should be inputed", Toast.LENGTH_SHORT).show();
+            return;
         }
     }
+
+//    private void RegisterUser()
+//    {
+//        String fullname = editFullName.getText().toString().trim();
+//        String email = editEmail.getText().toString().trim();
+//        String password = editPassword.getText().toString().trim();
+//        String repassword = editRePassword.getText().toString().trim();
+//        String birthdate = editDate.getText().toString().trim();
+//
+//        if(!TextUtils.isEmpty(fullname)||!TextUtils.isEmpty(email)||!TextUtils.isEmpty(password)||!TextUtils.isEmpty(repassword))
+//        {
+//            if(password.equals(repassword)) {
+//                String id = databaseUsers.push().getKey();
+//
+//                Users user = new Users(fullname, email, password, repassword, birthdate);
+//
+//                databaseUsers.child(id).setValue(user);
+//
+//                mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<AuthResult> task) {
+//                        if(task.isSuccessful())
+//                        {
+//                            finish();
+//                            startActivity(new Intent(RegisterActivity.this, ProfileActivity.class));
+//                            Toast.makeText(getApplicationContext(), "Successfully Registered", Toast.LENGTH_SHORT).show();
+//                        }
+//                        else
+//                        {
+//                            if(task.getException() instanceof FirebaseAuthUserCollisionException)
+//                            {
+//                                Toast.makeText(getApplicationContext(), "Already Registered", Toast.LENGTH_SHORT).show();
+//                            }
+//                        }
+//                    }
+//                });
+//            }
+//            else
+//            {
+//                Toast.makeText(this, "Password should be same", Toast.LENGTH_SHORT).show();
+//            }
+//            if(!Patterns.EMAIL_ADDRESS.matcher(email).matches())
+//            {
+//                editEmail.setError("Please put valid email");
+//                editEmail.requestFocus();
+//                return;
+//            }
+//            if(password.isEmpty()&&repassword.isEmpty())
+//            {
+//                editPassword.setError("Password is empty");
+//                editPassword.requestFocus();
+//                return;
+//            }
+//            if(password.length() < 6)
+//            {
+//                editPassword.setError("Minimum password is 6");
+//                editPassword.requestFocus();
+//                return;
+//            }
+//        }
+//        else
+//        {
+//            Toast.makeText(this, "All input should be inputed", Toast.LENGTH_SHORT).show();
+//        }
+//    }
 }
